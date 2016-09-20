@@ -49,12 +49,11 @@ enum MENU_ITEM
 /* A general OpenGL initialization function.  Sets all of the initial parameters. */
 void InitGL(int Width, int Height)          // We call this right after our OpenGL window is created.
 {
-    LoadGLTextures("../img/planets.bmp",0);
-    LoadGLTextures("../img/metal.bmp",1);
-    LoadGLTextures("../img/flower.bmp",2);
-    LoadGLTextures("../img/planets.bmp",3);
-    LoadGLTextures("../img/metal.bmp",4);
-    //LoadGLTextures("ass/4.bmp",4);
+    LoadGLTextures("img/planets.bmp",0);
+    LoadGLTextures("img/metal.bmp",1);
+    LoadGLTextures("img/flower.bmp",2);
+    LoadGLTextures("img/planets.bmp",3);
+    LoadGLTextures("img/metal.bmp",4);
  
     glEnable(GL_TEXTURE_2D);
 

@@ -22,10 +22,7 @@ objects= $(SOURCES:.c=.o)
 
 #Main executable file screensaver
 screensaver: $(objects)
-	g++ $(CFLAGS) $(objects) $(LIBRARIES) -o screensaver
-
-screen:
-	./screensaver $(NUM_THREADS)
+	g++ $(CFLAGS) $(objects) $(LIBRARIES) -o ../screensaver
 
 Main.o: Main.cpp Graphics.h
 	g++ $(CFLAGS) Main.cpp $(LIBRARIES)
