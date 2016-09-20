@@ -1,0 +1,74 @@
+\documentclass{report}
+\usepackage{graphicx}
+
+\begin{document}
+
+\title{Assignment 1 \\ Design Document}
+\author{Shivanshu Gupta | Prasoon Patidar | Sachin Meena}
+
+\maketitle
+\pagebreak
+\begin{abstract}
+In this assignment, we have developed a screensaver application for the UNIX environment in C++, using the openGL and pthread libraries. All the physics related to a particular ball is taken care by a thread generated for that ball. Synchronization amongst threads is achieved by Mutex locks and its subcomponents.
+\end{abstract}
+\pagebreak
+\section{Overall Design}
+Our Screensaver application is divided into the following two components:
+\begin{flushleft}
+\textbf{1. The Graphics Engine}
+\end{flushleft}
+\textbf{2. The Physics Engine}
+\subsection{The Graphics Engine}
+
+This part includes all the rendering and display functions written down using the openGL library. The balls were initially developed as Discs and there movement is confined to the plane of the screen. The discs were then converted to WireFrame spheres provided by the OpenGL library. We  plan to extend the movement space to a cuboidal box behind the plane of the screen and provide the spheres with a z component of velocity. We intend to wrap them up with different textures as well. We will also be adding control buttons for the user to control the speed of the balls, where all the balls will have same speed at a particular time, with random directions. While introducing new balls, the user will see a hole develop on a randomly selected wall of the cuboid from which the ball will be pushed in with the provided speed. After all the above mentioned tasks are finished, we will work on adding user control to change the speed of a particular ball.
+
+\subsubsection{Testing of the Subcomponent}
+
+\textbf{Step 1:} Implementation of a two coloured rectangle followed by a circle implemented through the Triangle Fan Method.
+\linebreak
+\linebreak
+\textbf{Step 2:} Testing of the disc's motion without collision with walls.
+\linebreak
+\linebreak
+\textbf{Step 3:} Testing of the disc's motion with collision with walls.
+\linebreak
+\linebreak
+\textbf{Step 4:} Introduction of multiple balls without collision physics followed by introduction of 
+collisions amongst balls.
+\linebreak
+\linebreak
+\textbf{Step 5:} Introduction of spheres in place of the circular discs.
+\linebreak
+\linebreak
+\textbf{NOTE:} Threading hasn't been applied to the Graphical part as parallelism is looked after by the Graphical Processing Unit(GPU) of the system.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=3.0in]{collision.png}
+    \caption{A typical collision between two balls}
+    \label{simulationfigure}
+\end{figure}
+
+\subsection{The Physics Engine}
+
+This part of the assignment includes the physics behind the movement of the balls, i.e., the motion of each ball, its collision with the wall and with other balls. The physics related to each of the balls is taken care of by a separate thread for all the balls and synchronization amongst the threads has been ensured by the application of Mutex lock. We have written down the collision physics in terms of relative velocity with the help of vectors only, that is, no trigonometry involved. We are now working on the Three Dimensional collisions and providing the spherical balls with a Z-component of velocity for movement in Z-direction as well.
+\linebreak
+\linebreak
+\textbf{NOTE: } The present mode of communication between threads is a Barrier one and balls are currently stored in an Array. We will be working on converting it to One-to-One communication system after we have achieved the above mentioned tasks.
+
+\subsubsection{Testing of the Sub-component}
+ 
+\textbf{Step 1:} Constraints were applied initially on the walls so that the balls collide with them properly.
+\linebreak
+\linebreak
+\textbf{Step 2:} Collision physics based on relative velocity was applied and tested by colliding multiple balls.
+\linebreak
+\linebreak
+\pagebreak
+
+\section{Interaction of Sub-Components:}
+The two sub-components of our assignment are distributed in two files, Physics.cpp and Graphics.cpp, which get executed by a makefile. The balls are stored in an array and all the data related to a ball is controlled by a thread as mentioned above. The Graphics Engine creates rotating spheres while the Physics Engine takes care of all the collisions taking place.
+
+\section{Maintaining Variable Ball Speeds}
+There is a random assignment of ball speed at the beginning and user can proportionally control the speed of ball. We planned to give billiards ball texture to balls with different numbers and thus, user would be able to control the speed of the ball with their respective numbers.
+\end{document}
